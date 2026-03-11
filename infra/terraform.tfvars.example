@@ -1,0 +1,10 @@
+aws_region         = "ap-south-1"
+environment        = "dev"
+app_name           = "skynet-ops-audit-service"
+container_port     = 8000
+container_cpu      = 256
+container_memory   = 512
+desired_count      = 1
+log_retention_days = 7
+monthly_budget_usd = 50
+image_uri          = "123456789012.dkr.ecr.ap-south-1.amazonaws.com/skynet-ops-audit-service:latest"
