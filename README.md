@@ -95,11 +95,19 @@ skynet-ops-audit-service/
 │   ├── monitoring.tf    # CloudWatch alarms and budget alerts
 │   ├── outputs.tf       # Output values after deploy
 │   └── terraform.tfvars.example
-├── .dockerignore
+├── docs/
+│   ├── cost-report.md
+│   ├── Observability.md
+│   ├── runbook.md
+│   ├── security.md
 ├── .env.example
+├── .gitignore
 ├── Dockerfile
 ├── requirements.txt
+├── submission_checklist.md
 └── README.md
+
+
 ```
 
 ---
