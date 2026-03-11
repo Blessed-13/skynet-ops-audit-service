@@ -7,8 +7,8 @@
 - **Name:** Blessed Retna Singh B S
 - **Email:** blessedretnasinghbs@gmail.com
 - **Chosen Cloud Platform:** AWS
-- **Assessment Level Submitted:** Level 1 only
-- **Level 2 Option Chosen :** N/A
+- **Assessment Level Submitted:** Level 1 and 2 
+- **Level 2 Option Chosen :** CI/CD implemented
 - **GitHub Repo Link:** https://github.com/Blessed-13/skynet-ops-audit-service.git
 - **Demo Video Link (optional but recommended):** [Your Demo Video URL]
 - **Submission Date (UTC):** 12/03/2026
