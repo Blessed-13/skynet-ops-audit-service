@@ -7,10 +7,10 @@
 - **Name:** Blessed Retna Singh B S
 - **Email:** blessedretnasinghbs@gmail.com
 - **Chosen Cloud Platform:** AWS
-- **Assessment Level Submitted:** Level 1 and 2 
-- **Level 2 Option Chosen :** CI/CD implemented
+- **Assessment Level Submitted:** Level 1 only
+- **Level 2 Option Chosen:** N/A
 - **GitHub Repo Link:** https://github.com/Blessed-13/skynet-ops-audit-service.git
-- **Demo Video Link (optional but recommended):** [Your Demo Video URL]
+- **Demo Video Link:** [Your Demo Video URL]
 - **Submission Date (UTC):** 12/03/2026
 
 ---
@@ -27,6 +27,7 @@
 - [x] Security/secrets approach — AWS SSM Parameter Store, non-root container, least-privilege IAM
 - [x] Ops runbook — 6 scenarios covered
 - [x] README with setup + teardown
+- [x] CI/CD pipeline — GitHub Actions, auto build + push to ECR + deploy to ECS on every push to main
 
 ---
 
@@ -45,6 +46,11 @@
 - IaC tool used: Terraform
 - IaC root path: `./infra/`
 - Environment config files: `./infra/terraform.tfvars.example`
+
+### CI/CD
+- Pipeline path: `./.github/workflows/deploy.yml`
+- Trigger: push to `main`
+- Actions: build image → push to ECR (`:latest` + `:<git-sha>`) → force ECS deploy → wait for stable
 
 ### Docs
 - README path: `./README.md`
@@ -135,7 +141,9 @@ curl "http://localhost:8000/metrics-demo?mode=burst"
 ## 6) Cloud Deployment Summary
 
 ### Deployment Type
-- [x] IaC + deploy plan (Terraform — ready to apply with real AWS credentials)
+- [x] Live deployment — service running on AWS ECS Fargate, verified via curl
+- [x] IaC — full Terraform, deployed with `terraform apply`
+- [x] CI/CD — GitHub Actions pipeline, auto deploys on every push to main
 
 ### Cloud Services Used
 
@@ -287,7 +295,7 @@ curl "http://localhost:8000/metrics-demo?mode=burst"
 1. **SQLite single-writer** — EFS+SQLite works correctly for `desired_count=1`. Scaling to multiple containers would require migrating to RDS PostgreSQL. Noted as intentional pilot trade-off.
 2. **No HTTPS** — ALB is HTTP only. Production would need an ACM certificate and HTTPS listener on port 443.
 3. **No auto scale-to-zero** — Dev environment runs 24/7. Scheduled ECS scaling (scale to 0 overnight) would reduce costs further.
-4. **No CI/CD pipeline** — Deployment is manual (`docker push` + `terraform apply`). A GitHub Actions pipeline would improve deployment safety.
+4. **Terraform does not update on CI/CD push** — Infra changes still require manual `terraform apply`. App code changes deploy automatically via GitHub Actions.
 5. **ALB cost at pilot scale** — ALB fixed cost (~$16.50/month) is high relative to total budget. API Gateway HTTP API would be cheaper but requires refactoring.
 
 ---
@@ -296,17 +304,22 @@ curl "http://localhost:8000/metrics-demo?mode=burst"
 
 ### AI tools used
 - [x] Claude
+- [x] Gpt
 
 ### What I used AI for
 - Scaffolding the FastAPI service structure
 - Writing Terraform resource definitions
 - Drafting the runbook, cost report, and README
+- Writing the GitHub Actions CI/CD pipeline
 
 ### What I manually verified / tested
 - Docker build and run locally
-- All API endpoints tested with curl
+- All API endpoints tested with curl against live AWS deployment
 - Dockerfile fixes (PYTHONPATH, PYTHONUNBUFFERED)
 - Reviewed all Terraform files for correctness
+- Debugged and fixed ECR import conflict during terraform apply
+- Rotated API key via SSM and verified auth works end to end
+- Verified EFS persistence — events survived force redeployment
 - Cost estimates verified against AWS pricing calculator
 
 ---

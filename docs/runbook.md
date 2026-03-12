@@ -368,7 +368,7 @@ Permissions should be limited to EFS access only. No `*` wildcards.
 
 ---
 
-## Useful Commands Cheatsheet
+## Useful Commands
 
 ```bash
 # View live logs
