@@ -10,7 +10,7 @@
 - **Assessment Level Submitted:** Level 1 only
 - **Level 2 Option Chosen:** N/A
 - **GitHub Repo Link:** https://github.com/Blessed-13/skynet-ops-audit-service.git
-- **Demo Video Link:** [Your Demo Video URL]
+- **Demo Video Link:** https://drive.google.com/file/d/1b1fK0xEnwVV8m0zE71uy90-Lvyd-o_ir/view?usp=drivesdk
 - **Submission Date (UTC):** 12/03/2026
 
 ---
